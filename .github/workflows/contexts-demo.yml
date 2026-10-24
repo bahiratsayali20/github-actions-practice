@@ -1,0 +1,21 @@
+name: Contexts and Expressions Demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  show-contexts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Display GitHub information
+        run: |
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Branch or ref: $GITHUB_REF"
+
+      - name: Check main branch
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: echo "Success! This workflow is running on main."
+
+      - name: Display runner information
+        run: echo "Runner OS: $RUNNER_OS"
